@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace wordPuzzle
 {
@@ -15,39 +14,27 @@ namespace wordPuzzle
 			for (int i = 0; i < 400; i++)
 			{
 				int ranInt = Random.Next(dictionary.Length);
-				string ranWord = dictionary[ranInt];
-				Console.Write(ranWord);
-				MatchWord(dictionary, ranWord);
+				string startWord = dictionary[ranInt];
+				Console.Write(startWord);
+				FindMatchingWord(dictionary, startWord);
 			}
 		}
 
-		private static void MatchWord(string[] dictionary, string ranWord)
+		private static void FindMatchingWord(string[] dictionary, string startWord)
 		{
 			int numb = 3;
-			int count = 1;
-			bool shouldAdd = true;
-			string[] wordArray = new string[20];
-			wordArray[0] = ranWord;
+			List<string> wordArray = new List<string> {startWord};
 			while (numb < 6)
 			{
-				foreach (var word in dictionary)
+				for (int i = 0; i < dictionary.Length; i++)
 				{
-	
-					if (!word.StartsWith(ranWord.Substring(ranWord.Length - numb))) continue;
-					foreach (var prevWord in wordArray)
-					{
-						if (word == prevWord) shouldAdd = false;
-					}
-
-					if (shouldAdd)
-					{
-						wordArray[count] = word;
-						ranWord = word;
-						Console.Write(" - " + word);
-						numb = 3;
-						count++;
-					}
-					shouldAdd = true;
+					string word = dictionary[i];
+					if (!word.StartsWith(startWord.Substring(startWord.Length - numb)) || wordArray.Contains(word)) continue;
+					wordArray.Add(word);
+					startWord = word;
+					Console.Write(" - " + word);
+					numb = 3;
+					i = 0;
 				}
 				numb++;
 			}
@@ -56,7 +43,7 @@ namespace wordPuzzle
 
 		static string[] DictionaryList()
 		{
-			const string path = @"C:\Users\OKaml\Documents\Modul 3\wordPuzzle\wordPuzzle\ordliste.txt";
+			const string path = @"C:\Users\OKaml\Documents\Modul 3\CSharp\wordPuzzle\wordPuzzle\ordliste.txt";
 			string prevWord = string.Empty;
 			var list = new List<string>();
 			foreach (var lines in File.ReadLines(path))
