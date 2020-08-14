@@ -38,6 +38,7 @@ namespace wordPuzzle
 				numb++;
 			}
 			Console.WriteLine("\n");
+			Console.WriteLine("\n");
 		}
 
 		static string[] DictionaryList()
