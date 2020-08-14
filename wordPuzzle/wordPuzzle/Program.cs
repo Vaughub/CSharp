@@ -6,21 +6,20 @@ namespace wordPuzzle
 {
 	class Program
 	{
-		static readonly Random Random = new Random();
-			
 		static void Main(string[] args)
 		{
 			string[] dictionary = DictionaryList();
-			for (int i = 0; i < 400; i++)
+			Random random = new Random();
+			for (int i = 0; i < 200; i++)
 			{
-				int ranInt = Random.Next(dictionary.Length);
+				int ranInt = random.Next(dictionary.Length);
 				string startWord = dictionary[ranInt];
 				Console.Write(startWord);
 				FindMatchingWord(dictionary, startWord);
 			}
 		}
 
-		private static void FindMatchingWord(string[] dictionary, string startWord)
+		static void FindMatchingWord(string[] dictionary, string startWord)
 		{
 			int numb = 3;
 			List<string> wordArray = new List<string> {startWord};
@@ -38,19 +37,19 @@ namespace wordPuzzle
 				}
 				numb++;
 			}
-			Console.WriteLine();
+			Console.WriteLine("\n");
 		}
 
 		static string[] DictionaryList()
 		{
 			const string path = @"C:\Users\OKaml\Documents\Modul 3\CSharp\wordPuzzle\wordPuzzle\ordliste.txt";
 			string prevWord = string.Empty;
-			var list = new List<string>();
+			List<string> list = new List<string>();
 			foreach (var lines in File.ReadLines(path))
 			{
 				var tab = lines.Split('\t');
-				var word = tab[1].Trim();
-				if (prevWord == word || word.Length < 7 || word.Length > 10 || word.Contains("-")) continue;
+				var word = tab[1].Trim().ToLower();
+				if (prevWord == word || word.Length < 7 || word.Length > 10 || word.Contains('-')) continue;
 				prevWord = word;
 				list.Add(word);
 			}
