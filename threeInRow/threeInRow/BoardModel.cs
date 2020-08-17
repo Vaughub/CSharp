@@ -17,8 +17,6 @@ namespace threeInRow
 			Counter = 0;
 		}
 
-
-
 		public void SetCross(string position)
 		{
 			while (true)
