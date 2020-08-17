@@ -11,16 +11,19 @@ namespace threeInRow
 			while (true)
 			{
 				BoardView.Show(model);
-				if (model.GameRunning) Console.Write("Skriv inn hvor du vil sette kryss (f.eks. \"a2\"): ");
-				else Console.WriteLine($"{model.winner} has won!, type 'r' to try again");
+				Console.Write("Skriv inn hvor du vil sette kryss (f.eks. \"a2\"): ");
 				var position = Console.ReadLine();
-				if (!model.GameRunning && position == "r") model = new BoardModel();
-				else if (!model.GameRunning) continue;
-
 				model.SetCross(position);
+				BoardView.Show(model);
 				model.CheckIfWon();
-				Thread.Sleep(2000);
-				model.SetRandomCircle();
+				if (model.GameRunning)
+				{
+					Thread.Sleep(1000);
+					model.SetRandomCircle();
+					BoardView.Show(model);
+					model.CheckIfWon();
+				}
+				if (!model.GameRunning) model = new BoardModel();
 			}
 		}
 	}

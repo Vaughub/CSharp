@@ -4,45 +4,49 @@ namespace threeInRow
 {
 	class BoardModel
 	{
-		public string[] route = { " ", " ", " ", " ", " ", " ", " ", " ", " " };
-		public bool GameRunning = true;
-		public string winner = " ";
+		public ArrContent[] Route { get; private set; }
+		public bool GameRunning { get; private set; }
+		private readonly Random Random;
 
-		private readonly Random random = new Random();
+		public BoardModel()
+		{
+			Route = new ArrContent[9];
+			GameRunning = true;
+			Random = new Random();
+		}
+
+
 
 		public void SetCross(string position)
 		{
-			for (int i = 0; i < 3; i++)
+			while (true)
 			{
-				if (position == $"a{i + 1}" && route[i] == " ")
+				if (position.Length == 2)
 				{
-					route[i] = "x";
-					return;
+					int row = position[0] == 'a' ? 0 : position[0] == 'b' ? 1 : position[0] == 'c' ? 2 : 10;
+					int column = position[1] == '1' ? 0 : position[1] == '2' ? 3 : position[1] == '3' ? 6 : 10;
+					int index = row + column;
+					if (index < 9 && Route[index] == ArrContent.Blank)
+					{
+						Route[index] = ArrContent.Cross;
+						break;
+					}
 				}
-				if (position == $"b{i + 1}" && route[i + 3] == " ")
-				{
-					route[i + 3] = "x";
-					return;
-				}
-				if (position == $"c{i + 1}" && route[i + 6] == " ")
-				{
-					route[i + 6] = "x";
-					return;
-				}
+				Console.WriteLine("Ugyldig trekk, prøv igjen");
+				position = Console.ReadLine();
 			}
-			Console.WriteLine("Ugylding trekk, prøv igjen");
+
 		}
 
 		public void SetRandomCircle()
 		{
 			while (true)
 			{
-				int randomInt = random.Next(route.Length);
-				if (route[randomInt] == " ") route[randomInt] = "o";
+				int randomInt = Random.Next(Route.Length);
+				if (Route[randomInt] == ArrContent.Blank) Route[randomInt] = ArrContent.Circle;
 				else continue;
 				break;
 			}
-			CheckIfWon();
 		}
 
 		public void CheckIfWon()
@@ -59,12 +63,18 @@ namespace threeInRow
 
 		private void CheckProgram(int x, int y, int z)
 		{
-			if ((route[x] == "x" || route[x] == "o") && route[x] == route[y] && route[x] == route[z])
+			if ((Route[x] == ArrContent.Cross || Route[x] == ArrContent.Circle) && Route[x] == Route[y] && Route[x] == Route[z])
 			{
-				winner = $"{x}";
-				GameRunning = false;
+				Console.WriteLine($"The winner is '{(Route[x] == ArrContent.Circle ? "o" : "x")}'");
+				while (true)
+				{
+					Console.WriteLine("Type 'r' to try again");
+					string answer = Console.ReadLine();
+					if (answer != "r") continue;
+						GameRunning = false;
+						break;
+				}
 			}
-
 		}
 	}
 }
