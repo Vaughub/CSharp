@@ -41,34 +41,4 @@ namespace randomSquares
 			screen.Show();
 		}
 	}
-
-
-
-
-	//private static void Main(string[] args)
-	//{
-
-
-	//	//Random random = new Random();
-	//	//Box vBox = new Box(random, 40, 10);
-	//	//VirtualScreen tre = new VirtualScreen(100, 25);
-	//	//tre.Add(vBox);
-	//	//tre.Show();
-
-	//	//Screen vRee = new Screen();
-	//	//VirtualScreenRow vScreen1 = new VirtualScreenRow(20);
-	//	//VirtualScreenRow vScreen2 = new VirtualScreenRow(20);
-	//	//VirtualScreenRow vScreen3 = new VirtualScreenRow(20);
-	//	//vScreen1.AddBoxTopRow(5, 3);
-	//	//vScreen2.AddBoxMiddleRow(4, 5);
-	//	//vScreen3.AddBoxBottomRow(3, 7);
-	//	//vScreen1.Show();
-	//	//vScreen2.Show();
-	//	//vScreen3.Show();
-	//	//Console.WriteLine(vScreen.Show());
-	//	//Console.WriteLine("kek");
-	//	//vScreen.AddHorizontal();
-	//	//vScreen.AddUpperRightCorner();
-	//	//Console.WriteLine(vScreen.GetCharacter());
-	//}
 }
