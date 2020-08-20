@@ -23,6 +23,7 @@ namespace randomSquares
 				rows[i].AddBoxMiddleRow(box.X, box.Width);
 			}
 			rows[box.EndY - 1].AddBoxBottomRow(box.X, box.Width);
+			AddColor(box);
 		}
 
 		public void Show()

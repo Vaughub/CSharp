@@ -36,7 +36,6 @@ namespace randomSquares
 			foreach (Box box in boxes)
 			{
 				screen.Add(box);
-				screen.AddColor(box);
 			}
 			screen.Show();
 		}
