@@ -6,7 +6,7 @@ namespace obligOne
 	public class FamilyApp
 	{
 		public Person[] Family { get; }
-		public readonly string WelcomeMessage = "Velkommen bruker";
+		public readonly string WelcomeMessage = "Slektstre-Program";
 		public readonly string CommandPrompt = "Kommando: ";
 
 		public FamilyApp(params Person[] family)
@@ -23,7 +23,7 @@ namespace obligOne
 			string command = arr[0];
 			if (command == "hjelp") return WriteHelpText();
 			if (command == "liste") return ShowEveryoneOnList();
-			return command == "vis" ? ShowPersonWithId(arr[1]) : "";
+			return command == "vis" ? ShowPersonWithId(arr[1]) : "This shouldn't have happened";
 		}
 
 		private string ShowPersonWithId(string idNr)
