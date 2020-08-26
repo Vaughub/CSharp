@@ -9,9 +9,9 @@ namespace obligOne
 		public readonly string WelcomeMessage = "Velkommen bruker";
 		public readonly string CommandPrompt = "Kommando: ";
 
-		public FamilyApp(params Person[] kek)
+		public FamilyApp(params Person[] family)
 		{
-			Family = kek;
+			Family = family;
 		}
 
 		public string HandleCommand(string line)
@@ -22,7 +22,7 @@ namespace obligOne
 			string[] arr = line.Split(" ");
 			string command = arr[0];
 			if (command == "hjelp") return WriteHelpText();
-			if (command == "liste") return ShowEveryoneInList();
+			if (command == "liste") return ShowEveryoneOnList();
 			return command == "vis" ? ShowPersonWithId(arr[1]) : "";
 		}
 
@@ -34,17 +34,16 @@ namespace obligOne
 			foreach (var person in Family)
 			{
 				if (person.Id == number) main.Append(person.GetDescription() + "\n");
-				if (person.Mother == null && person.Father == null) continue;
-				if ((person.Father?.Id ?? person.Mother.Id) == number) children.Append(person.GetChildren() + "\n");
+				if (person.Mother != null && person.Mother.Id == number || person.Father != null && person.Father.Id == number)
+					children.Append(person.GetChildren() + "\n");
 			}
-
 			if (main.Length == 0) return "Person ikke funnet";
 			var childTag = children.Length > 0 ? "  Barn:\n" : "";
 
 			return main + childTag + children;
 		}
 
-		private string ShowEveryoneInList()
+		private string ShowEveryoneOnList()
 		{
 			var tempFamily = new StringBuilder();
 			foreach (var person in Family)
