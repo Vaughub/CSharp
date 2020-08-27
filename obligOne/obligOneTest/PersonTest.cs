@@ -5,11 +5,6 @@ namespace obligOneTest
 {
 	public class PersonTest
 	{
-		[SetUp]
-		public void Setup()
-		{
-		}
-
 		[Test]
 		public void TestAllFields()
 		{

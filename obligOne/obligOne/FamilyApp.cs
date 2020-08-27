@@ -38,7 +38,7 @@ namespace obligOne
 					children.Append(person.GetChildren() + "\n");
 			}
 			if (main.Length == 0) return "Person ikke funnet";
-			var childTag = children.Length > 0 ? "  Barn:\n" : "";
+			string childTag = children.Length > 0 ? "  Barn:\n" : "";
 
 			return main + childTag + children;
 		}

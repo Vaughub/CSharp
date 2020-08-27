@@ -5,11 +5,6 @@ namespace obligOneTest
 {
 	public class FamilyAppTest
 	{
-		[SetUp]
-		public void Setup()
-		{
-		}
-
 		[Test]
 		public void Test()
 		{
