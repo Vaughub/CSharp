@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Linq;
 
 namespace adventureRoom2
 {
@@ -47,19 +48,15 @@ namespace adventureRoom2
 				return $"   You opened the {Doors[i].DoorColor.ToString().ToLower()} door";
 			}
 
-			return "   Unable to open door";
+			bool doorInRoom = Doors.Any(d => d.DoorColor.ToString().ToLower() == door);
+			return doorInRoom ? "   You don't have the key to this door" : "   Door is not in this room";
 		}
 
 		public string TryGoNextRoom(string door, Player player)
 		{
-			//bool doorOpen = false;
-			//bool doorInRoom = false;
 			foreach (var d in Doors)
 			{
-				//if (door != d.DoorColor.ToString().ToLower()) doorInRoom = true;
 				if (door != d.DoorColor.ToString().ToLower() || !d.DoorOpen) continue;
-
-				
 
 				if ((int) d.DoorColor == player.Position)
 				{
@@ -73,9 +70,8 @@ namespace adventureRoom2
 				}
 			}
 
-			//return doorInRoom ? "Door is not in this room" : "Door is closed";
-			return door.Contains(door) ? "Door is not in this room" : "Door is closed";
-			//return "Door is closed / Door is not in this room";
+			bool doorInRoom = Doors.Any(d => d.DoorColor.ToString().ToLower() == door);
+			return doorInRoom ? "Door is closed" : "Door is not in this room";
 		}
 	}
 }
