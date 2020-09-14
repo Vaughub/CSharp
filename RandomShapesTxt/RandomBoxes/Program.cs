@@ -32,7 +32,7 @@ namespace RandomBoxes
 	            int pickShape = random.Next(0, 3);
                 if (pickShape == 0) shapes[i] = new Rectangle(random, _width, _height);
                 else if (pickShape == 1) shapes[i] = new Triangle(random, _height);
-                else shapes[i] = new Text(10, 5, random);
+                else if (pickShape == 2) shapes[i] = new Text(10, 5, random);
             }
             return shapes;
         }

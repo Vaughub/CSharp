@@ -2,6 +2,7 @@
 {
 	public enum Door
 	{
+		Open,
 		Red,
 		Green,
 		Grey,

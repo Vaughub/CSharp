@@ -2,6 +2,7 @@
 {
     public enum Keys
     {
+        None,
         Red,
         Green,
         Grey,
